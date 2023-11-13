@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+<title>Admin page</title>
+{% endblock %}
+
+
+{% block content %}
+
+{% if admin %}
+<div class="admin d-flex align-items-center mt-5">
+    <nav class="nav">
+        <a class="btn" href="/admin/article">Article</a>
+        <a class="btn" href="/admin/about">About</a>
+        <a class="btn" href="/admin/admin_list">Admin list</a>
+    </nav>
+
+    {% if article_title %}
+    <div class="w-100 p-3 m-auto">
+        <center>
+            <h3>{{ article_title }} Admin Panel</h3>
+        </center>
+        <form class="w-50 border p-3 m-auto mt-5" action="/admin/article" method="post" enctype="multipart/form-data">
+            <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">Title</label>
+                <input type="text" class="form-control" name="title" required>
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">Description</label>
+                <textarea name="description" class="form-control" type="text" required></textarea>
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">Image</label>
+                <input type="file" class="form-control" name="img" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+
+
+    {% elif about_title %}
+    <div class="w-100 p-3 m-auto">
+        <center>
+            <h3>{{ about_title }} Admin Panel</h3>
+        </center>
+        <form class="w-50 border p-3 m-auto mt-5" action="/admin/about" method="post" enctype="multipart/form-data">
+            <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">Title</label>
+                <input type="text" class="form-control" name="title" required>
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">Description</label>
+                <textarea name="description" class="form-control" type="text" required></textarea>
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">Image</label>
+                <input type="file" class="form-control" name="img" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+
+    {% elif admin_title %}
+    <div class="admin_list m-auto">
+        <h1>{{ admin_title }}:</h1>
+
+        <form action="/admin/admin_list" method="post" class="d-flex flex-column">
+            {% for item in admins %}
+            <div>
+                <input name="admin_{{ item.id }}" type="checkbox" id="boxid_{{ item.id }}" {% if item.status %} checked {% endif %}>
+                <label class="fs-5" for="boxid_{{ item.id }}">{{ item.name }}</label>
+            </div>
+            {% endfor %}
+
+            <button type="submit" class="btn btn-success">Save</button>
+        </form>
+    </div>
+
+    {% else %}
+    <h1 class="m-auto">Admin Panel</h1>
+
+    {% endif %}
+</div>
+
+{% else %}
+<center>
+    <h1 class="mt-5">You are not admin!</h1>
+</center>
+{% endif %}
+
+{% endblock %}

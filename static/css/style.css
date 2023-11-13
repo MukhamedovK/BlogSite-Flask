@@ -1,0 +1,24 @@
+.delete_btn {
+    position: absolute;
+    left: 200px;
+    top: 10px;
+}
+
+.card-img-top {
+    position: relative;
+}
+
+.nav {
+    padding: 100px 50px 100px 50px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 30px;
+    border-right: 1px solid black;
+    width: 220px;
+}
+
+.nav>a, .nav>a:hover{
+    color: black;
+    border: 3px solid black;
+    background-color: whitesmoke;
+}

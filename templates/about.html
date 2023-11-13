@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+<title>About Page</title>
+{% endblock %}
+
+
+{% block content %}
+
+<div class="container">
+    {% for item in about %}
+    <div class="row m-5 borders shadow p-4">
+        <div class="col-6">
+            <img class="w-75"
+                src="{{ item.photo }}" alt="">
+        </div>
+        <div class="col-6">
+            <h3>{{ item.title }}</h3>
+            <p>{{ item.description }}</p>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock %}
